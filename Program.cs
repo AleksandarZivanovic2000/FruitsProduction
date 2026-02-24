@@ -7,29 +7,86 @@ namespace FruitsProduction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== HARVEST INTAKE PROCESS ===\n");
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("=== HARVEST MANAGEMENT SYSTEM ===");
+                Console.WriteLine("1 - Insert Harvest");
+                Console.WriteLine("2 - Read Harvest Lots");
+                Console.WriteLine("3 - Delete Harvest Lot");
+                Console.WriteLine("0 - Exit");
+                Console.Write("\nSelect option: ");
 
+                var choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        InsertHarvest();
+                        break;
+
+                    case "2":
+                        ReadHarvestLots();
+                        break;
+
+                    case "3":
+                        DeleteHarvestLot();
+                        break;
+
+                    case "0":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option.");
+                        break;
+                }
+
+                Console.WriteLine("\nPress ENTER to continue...");
+                Console.ReadLine();
+            }
+        }
+
+        // ==============================
+        // INSERT
+        // ==============================
+        static void InsertHarvest()
+        {
             try
             {
+                Console.Write("Lot Code: ");
+                string lotCode = Console.ReadLine();
+
+                Console.Write("Shift: ");
+                string shift = Console.ReadLine();
+
+                Console.Write("Picker Team: ");
+                string pickerTeam = Console.ReadLine();
+
+                Console.Write("Quantity: ");
+                decimal quantity = decimal.Parse(Console.ReadLine());
+
+                Console.Write("Unit Code (e.g. KG): ");
+                string unitCode = Console.ReadLine();
+
                 ExecuteHarvestIntake(
-                    lotCode: "HL-2026-001",
-                    harvestDate: DateTime.Today,
-                    shift: "Day",
-                    pickerTeam: "Team A",
-                    grossQuantity: 1000m,
-                    unitCode: "KG",
-                    notes: "Morning harvest"
+                    lotCode,
+                    DateTime.Today,
+                    shift,
+                    pickerTeam,
+                    quantity,
+                    unitCode,
+                    "Manual entry"
                 );
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\nPROCESS FAILED:");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("\nERROR: " + ex.Message);
             }
-
-            Console.ReadLine();
         }
 
+        // ==============================
+        // CORE BUSINESS LOGIC
+        // ==============================
         static void ExecuteHarvestIntake(
             string lotCode,
             DateTime harvestDate,
@@ -41,73 +98,46 @@ namespace FruitsProduction
         {
             using (var db = new ProductionProduceDbEntities())
             {
-                Console.WriteLine("STEP 1: VALIDATION\n");
+                Console.WriteLine("\nSTEP 1: VALIDATION");
 
-                // =========================
-                // 1️⃣ CropCycle (uzima prvi aktivni)
-                // =========================
                 var cropCycle = db.CropCycles.FirstOrDefault();
-
                 if (cropCycle == null)
-                    throw new Exception("No CropCycle exists in database.");
+                    throw new Exception("No CropCycle exists.");
 
-                Console.WriteLine($"Using CropCycle ID: {cropCycle.CropCycleId}");
-
-                // =========================
-                // 2️⃣ Duplicate LotCode
-                // =========================
                 if (db.HarvestLots.Any(x => x.LotCode == lotCode))
                     throw new Exception("Duplicate LotCode.");
 
-                // =========================
-                // 3️⃣ Quantity validation
-                // =========================
                 if (grossQuantity <= 0)
                     throw new Exception("Quantity must be greater than zero.");
 
-                // =========================
-                // 4️⃣ Date validation
-                // =========================
                 if (harvestDate > DateTime.Today)
-                    throw new Exception("Harvest date cannot be in the future.");
+                    throw new Exception("Harvest date cannot be in future.");
 
-                // =========================
-                // 5️⃣ Unit validation
-                // =========================
                 var unit = db.UnitOfMeasures
                     .FirstOrDefault(x => x.Code == unitCode);
 
                 if (unit == null)
-                    throw new Exception("Unit of measure does not exist.");
+                    throw new Exception("Unit does not exist.");
 
-                // =========================
-                // 6️⃣ Status validation
-                // =========================
                 var status = db.LotStatus
                     .FirstOrDefault(x => x.Code == "Created");
 
                 if (status == null)
-                    throw new Exception("LotStatus 'Created' not configured.");
+                    throw new Exception("LotStatus 'Created' missing.");
 
-                // =========================
-                // 7️⃣ MovementType validation
-                // =========================
                 var movementType = db.InventoryMovementTypes
                     .FirstOrDefault(x => x.Code == "HarvestIn");
 
                 if (movementType == null)
-                    throw new Exception("InventoryMovementType 'HarvestIn' not configured.");
+                    throw new Exception("MovementType 'HarvestIn' missing.");
 
-                Console.WriteLine("Validation PASSED.\n");
+                Console.WriteLine("Validation PASSED.");
 
-                // =========================
-                // TRANSACTION
-                // =========================
                 using (var transaction = db.Database.BeginTransaction())
                 {
                     try
                     {
-                        Console.WriteLine("STEP 2: BEGIN TRANSACTION\n");
+                        Console.WriteLine("\nSTEP 2: INSERTING DATA");
 
                         var harvestLot = new HarvestLot
                         {
@@ -120,24 +150,18 @@ namespace FruitsProduction
                             GrossQuantity = grossQuantity,
                             UnitOfMeasureId = unit.UnitOfMeasureId,
                             LotStatusId = status.LotStatusId,
-                            Notes = notes,
-                            CropCycle = cropCycle,
+                            Notes = notes
                         };
 
                         db.HarvestLots.Add(harvestLot);
                         db.SaveChanges();
 
-                        Console.WriteLine($"HarvestLot created with ID: {harvestLot.HarvestLotId}");
-
                         var movement = new InventoryMovement
                         {
-                            InventoryMovementId = movementType.InventoryMovementTypeId,
                             HarvestLotId = harvestLot.HarvestLotId,
-                            FromStorageBinId = null,
-                            ToStorageBinId = null,
                             Quantity = grossQuantity,
                             UnitOfMeasureId = unit.UnitOfMeasureId,
-                            MovementTypeId = 1,
+                            MovementTypeId = movementType.InventoryMovementTypeId,
                             Notes = "Initial harvest intake"
                         };
 
@@ -157,31 +181,66 @@ namespace FruitsProduction
                         db.SaveChanges();
                         transaction.Commit();
 
-                        Console.WriteLine("Transaction COMMITTED.\n");
+                        Console.WriteLine("Transaction COMMITTED.");
                     }
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        Console.WriteLine("Transaction ROLLED BACK.");
                         throw new Exception("Transaction failed: " + ex.Message);
                     }
                 }
 
-                // =========================
-                // VERIFY STOCK
-                // =========================
-                Console.WriteLine("STEP 3: VERIFY STOCK\n");
+                Console.WriteLine("\nSUCCESS: Harvest intake completed.");
+            }
+        }
 
-                var balance = db.InventoryMovements
-                    .Where(x => x.HarvestLot.LotCode == lotCode)
-                    .Sum(x => (decimal?)x.Quantity) ?? 0;
+        // ==============================
+        // READ
+        // ==============================
+        static void ReadHarvestLots()
+        {
+            using (var db = new ProductionProduceDbEntities())
+            {
+                var lots = db.HarvestLots
+                    .OrderByDescending(x => x.HarvestDate)
+                    .ToList();
 
-                Console.WriteLine($"Calculated Balance: {balance} {unitCode}");
+                Console.WriteLine("\n=== HARVEST LOTS ===\n");
 
-                if (balance != grossQuantity)
-                    throw new Exception("Balance mismatch detected.");
+                foreach (var lot in lots)
+                {
+                    Console.WriteLine($"ID: {lot.HarvestLotId}");
+                    Console.WriteLine($"LotCode: {lot.LotCode}");
+                    Console.WriteLine($"Date: {lot.HarvestDate:d}");
+                    Console.WriteLine($"Quantity: {lot.GrossQuantity}");
+                    Console.WriteLine("----------------------------");
+                }
+            }
+        }
 
-                Console.WriteLine("\nSUCCESS: Harvest intake completed correctly.");
+        // ==============================
+        // DELETE
+        // ==============================
+        static void DeleteHarvestLot()
+        {
+            Console.Write("Enter LotCode to delete: ");
+            string lotCode = Console.ReadLine();
+
+            using (var db = new ProductionProduceDbEntities())
+            {
+                var lot = db.HarvestLots
+                    .FirstOrDefault(x => x.LotCode == lotCode);
+
+                if (lot == null)
+                {
+                    Console.WriteLine("Lot not found.");
+                    return;
+                }
+
+                db.HarvestLots.Remove(lot);
+                db.SaveChanges();
+
+                Console.WriteLine("Lot deleted successfully.");
             }
         }
     }
