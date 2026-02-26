@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="079713cdb9314a7a853989dcb855b028" Name="Diagram1">
+        <EntityTypeShape EntityType="ProductionProduceDbModel.AgroApplication" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.AgroInput" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.AgroInputType" Width="1.5" PointX="1.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.AuditLog" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Carrier" Width="1.5" PointX="9" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Country" Width="1.5" PointX="1.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.CropCycle" Width="1.5" PointX="0.75" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Customer" Width="1.5" PointX="6.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Farm" Width="1.5" PointX="1.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Field" Width="1.5" PointX="1.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.HarvestLot" Width="1.5" PointX="6" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.InspectionType" Width="1.5" PointX="11" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.InventoryMovement" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.InventoryMovementType" Width="1.5" PointX="6" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.IrrigationEvent" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.LabResult" Width="1.5" PointX="10.5" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.LabResultStatu" Width="1.5" PointX="8.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.LabSample" Width="1.5" PointX="8.25" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.LabTestType" Width="1.5" PointX="8.25" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.LotStatu" Width="1.5" PointX="3.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.OrderStatu" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.PackagingType" Width="1.5" PointX="9" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.PackedProductLot" Width="1.5" PointX="11.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.PackingRun" Width="1.5" PointX="9" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Pallet" Width="1.5" PointX="8.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.PalletItem" Width="1.5" PointX="13.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.ProduceType" Width="1.5" PointX="1.5" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.ProduceVariety" Width="1.5" PointX="1.5" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.QualityGrade" Width="1.5" PointX="9" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.QualityInspection" Width="1.5" PointX="13.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Recall" Width="1.5" PointX="14.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.RecallTarget" Width="1.5" PointX="16.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.SalesOrder" Width="1.5" PointX="9" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.SalesOrderLine" Width="1.5" PointX="3" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Season" Width="1.5" PointX="1.5" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.Shipment" Width="1.5" PointX="11.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.ShipmentItem" Width="1.5" PointX="13.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.ShipmentStatu" Width="1.5" PointX="9" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.StorageBin" Width="1.5" PointX="6" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.StorageConditionLog" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.StorageFacility" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.StorageZone" Width="1.5" PointX="3.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductionProduceDbModel.UnitOfMeasure" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_AgroApplication_CropCycle" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_AgroApplication_Input" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_AgroApplication_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_AgroInput_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Shipment_Carrier" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Customer_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Farm_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_CropCycle_Field" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_CropCycle_Season" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_CropCycle_Variety" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_HarvestLot_CropCycle" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IrrigationEvent_CropCycle" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SalesOrder_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Field_Farm" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_StorageFacility_Farm" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_HarvestLot_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_HarvestLot_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IM_Lot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_LabSample_Lot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PPL_SourceLot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_QI_Lot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_RecallTarget_HarvestLot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_QI_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IM_FromBin" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IM_ToBin" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IM_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IM_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_IrrigationEvent_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_LabResult_Sample" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_LabResult_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_LabResult_TestType" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_LabResult_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SalesOrder_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PPL_Packaging" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SOL_Packaging" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PalletItem_PackedLot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PPL_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PPL_Run" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PPL_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_RecallTarget_PackedLot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_ShipmentItem_PackedLot" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PackingRun_Facility" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Pallet_Bin" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Pallet_Facility" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PalletItem_Pallet" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_RecallTarget_Pallet" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_ShipmentItem_Pallet" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_PalletItem_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_ProduceVariety_ProduceType" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SOL_ProduceType" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SOL_Variety" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_QI_ApprovedGrade" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_QI_ProposedGrade" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SOL_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_RecallTarget_Recall" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_RecallTarget_Shipment" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Shipment_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SOL_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_SOL_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Shipment_FromFacility" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_Shipment_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_ShipmentItem_Shipment" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_ShipmentItem_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_StorageBin_UoM" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_StorageBin_Zone" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_StorageCondition_Zone" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductionProduceDbModel.FK_StorageZone_Facility" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

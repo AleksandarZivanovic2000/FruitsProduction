@@ -1,122 +1,303 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
+using System.Linq;
+using StorageAllocation;
 
-class Program
+namespace FruitsProduction
 {
-    static string connectionString =
-        "Server=.;Database=StorageDB;Trusted_Connection=True;TrustServerCertificate=True;";
-
-    static void Main()
+    internal class Program
     {
-        Console.WriteLine("Testing connection...");
-
-        TestConnection();
-
-        while (true)
+        static void Main(string[] args)
         {
-            Console.WriteLine("\n1 - Show Harvest Lots");
-            Console.WriteLine("2 - Check Bin Capacity");
-            Console.WriteLine("0 - Exit");
-
-            string option = Console.ReadLine();
-
-            switch (option)
+            while (true)
             {
-                case "1":
-                    ShowHarvestLots();
-                    break;
+                Console.Clear();
+                Console.WriteLine("=== STORAGE MANAGEMENT SYSTEM ===");
+                Console.WriteLine("1 - View Unallocated Lots");
+                Console.WriteLine("2 - Allocate Lot To Bin");
+                Console.WriteLine("3 - Log Storage Condition");
+                Console.WriteLine("4 - View Storage Dashboard");
+                Console.WriteLine("0 - Exit");
+                Console.Write("\nSelect option: ");
 
-                case "2":
-                    CheckCapacity();
-                    break;
+                var choice = Console.ReadLine();
 
-                case "0":
-                    return;
+                try
+                {
+                    switch (choice)
+                    {
+                        case "1":
+                            ViewUnallocatedLots();
+                            break;
+                        case "2":
+                            AllocateLotMenu();
+                            break;
+                        case "3":
+                            LogConditionMenu();
+                            break;
+                        case "4":
+                            ViewStorageDashboard();
+                            break;
+                        case "0":
+                            return;
+                        default:
+                            Console.WriteLine("Invalid option.");
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("\nERROR: " + ex.Message);
+                }
+
+                Console.WriteLine("\nPress ENTER to continue...");
+                Console.ReadLine();
             }
         }
-    }
 
-    // ===============================
-    // TEST CONNECTION
-    // ===============================
-    static void TestConnection()
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        // ======================================
+        // VIEW UNALLOCATED LOTS
+        // ======================================
+        static void ViewUnallocatedLots()
         {
-            conn.Open();
-            Console.WriteLine("Database connected successfully.");
-        }
-    }
-
-    // ===============================
-    // SHOW HARVEST LOTS
-    // ===============================
-    static void ShowHarvestLots()
-    {
-        using (SqlConnection conn = new SqlConnection(connectionString))
-        {
-            conn.Open();
-
-            string query = "SELECT Id, LotCode, GrossQuantity FROM HarvestLots";
-
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (var db = new ProductionProduceDbEntities())
             {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    Console.WriteLine("\n--- HARVEST LOTS ---");
+                var lots = db.HarvestLots.ToList();
 
-                    while (reader.Read())
+                Console.WriteLine("\n=== UNALLOCATED LOTS ===\n");
+
+                foreach (var lot in lots)
+                {
+                    var hasTransfer = db.InventoryMovements
+                        .Any(m => m.HarvestLotId == lot.HarvestLotId &&
+                                  m.ToStorageBinId != null);
+
+                    if (!hasTransfer)
                     {
-                        Console.WriteLine(
-                            "ID: " + reader["Id"] +
-                            " | Code: " + reader["LotCode"] +
-                            " | Qty: " + reader["GrossQuantity"]);
+                        Console.WriteLine($"ID: {lot.HarvestLotId}");
+                        Console.WriteLine($"LotCode: {lot.LotCode}");
+                        Console.WriteLine($"Date: {lot.HarvestDate:d}");
+                        Console.WriteLine($"Quantity: {lot.GrossQuantity}");
+                        Console.WriteLine("---------------------------");
                     }
                 }
             }
         }
-    }
 
-    // ===============================
-    // CHECK BIN CAPACITY
-    // ===============================
-    static void CheckCapacity()
-    {
-        Console.Write("Enter Bin Id: ");
-        int binId = int.Parse(Console.ReadLine());
-
-        using (SqlConnection conn = new SqlConnection(connectionString))
+        // ======================================
+        // ALLOCATE LOT MENU
+        // ======================================
+        static void AllocateLotMenu()
         {
-            conn.Open();
+            Console.Write("HarvestLotId: ");
+            int lotId = int.Parse(Console.ReadLine());
 
-            decimal capacity = 0;
+            Console.Write("ToStorageBinId: ");
+            int binId = int.Parse(Console.ReadLine());
 
-            string capQuery = "SELECT CapacityKg FROM StorageBins WHERE Id = @BinId";
+            Console.Write("Quantity: ");
+            decimal quantity = decimal.Parse(Console.ReadLine());
 
-            using (SqlCommand cmd = new SqlCommand(capQuery, conn))
+            AllocateLot(lotId, binId, quantity);
+        }
+
+        // ======================================
+        // ALLOCATION LOGIC
+        // ======================================
+        static void AllocateLot(int harvestLotId, int toBinId, decimal quantity)
+        {
+            using (var db = new ProductionProduceDbEntities())
             {
-                cmd.Parameters.AddWithValue("@BinId", binId);
-                capacity = Convert.ToDecimal(cmd.ExecuteScalar());
+                Console.WriteLine("\nSTEP 1: VALIDATION");
+
+                if (quantity <= 0)
+                    throw new Exception("Quantity must be greater than zero.");
+
+                var lot = db.HarvestLots.Find(harvestLotId);
+                if (lot == null)
+                    throw new Exception("Harvest lot not found.");
+
+                var bin = db.StorageBins.Find(toBinId);
+                if (bin == null)
+                    throw new Exception("Storage bin not found.");
+
+                decimal available = GetBinAvailableCapacityKg(toBinId);
+
+                if (quantity > available)
+                    throw new Exception("Bin capacity exceeded.");
+
+                var transferType = db.InventoryMovementTypes
+                    .FirstOrDefault(x => x.Code == "Transfer");
+
+                if (transferType == null)
+                    throw new Exception("Transfer movement type missing.");
+
+                Console.WriteLine("Validation PASSED.");
+
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var movement = new InventoryMovement
+                        {
+                            HarvestLotId = harvestLotId,
+                            MovementTypeId = transferType.InventoryMovementTypeId,
+                            FromStorageBinId = null,
+                            ToStorageBinId = toBinId,
+                            Quantity = quantity,
+                            Notes = "Manual allocation"
+                        };
+
+                        db.InventoryMovements.Add(movement);
+
+                        var audit = new AuditLog
+                        {
+                            OccurredAt = DateTime.Now,
+                            Actor = "ConsoleApp",
+                            Action = "ALLOCATE",
+                            EntityName = "HarvestLot",
+                            EntityKey = harvestLotId.ToString()
+                        };
+
+                        db.AuditLogs.Add(audit);
+
+                        db.SaveChanges();
+                        transaction.Commit();
+
+                        Console.WriteLine("Allocation successful.");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Allocation failed: " + ex.Message);
+                    }
+                }
             }
+        }
 
-            decimal currentStock = 0;
-
-            string stockQuery =
-                "SELECT ISNULL(SUM(CASE WHEN ToStorageBinId = @BinId THEN Quantity ELSE 0 END),0) -" +
-                "ISNULL(SUM(CASE WHEN FromStorageBinId = @BinId THEN Quantity ELSE 0 END),0) " +
-                "FROM InventoryMovements";
-
-            using (SqlCommand cmd = new SqlCommand(stockQuery, conn))
+        // ======================================
+        // CAPACITY CHECK (ISPRAVLJENO)
+        // ======================================
+        static decimal GetBinAvailableCapacityKg(int binId)
+        {
+            using (var db = new ProductionProduceDbEntities())
             {
-                cmd.Parameters.AddWithValue("@BinId", binId);
-                currentStock = Convert.ToDecimal(cmd.ExecuteScalar());
+                var bin = db.StorageBins.Find(binId);
+
+                if (bin == null)
+                    throw new Exception("Bin not found.");
+
+                var totalIn = db.InventoryMovements
+                    .Where(m => m.ToStorageBinId == binId)
+                    .Sum(m => (decimal?)m.Quantity) ?? 0;
+
+                var totalOut = db.InventoryMovements
+                    .Where(m => m.FromStorageBinId == binId)
+                    .Sum(m => (decimal?)m.Quantity) ?? 0;
+
+                var currentStock = totalIn - totalOut;
+
+                
+                return currentStock;
             }
+        }
 
-            decimal available = capacity - currentStock;
+        // ======================================
+        // LOG CONDITION MENU
+        // ======================================
+        static void LogConditionMenu()
+        {
+            Console.Write("StorageZoneId: ");
+            int zoneId = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Capacity: " + capacity);
-            Console.WriteLine("Current stock: " + currentStock);
-            Console.WriteLine("Available: " + available);
+            Console.Write("Temperature: ");
+            decimal temp = decimal.Parse(Console.ReadLine());
+
+            Console.Write("Humidity: ");
+            decimal humidity = decimal.Parse(Console.ReadLine());
+
+            LogStorageCondition(zoneId, temp, humidity);
+        }
+
+        // ======================================
+        // STORAGE CONDITION LOGIC
+        // ======================================
+        static void LogStorageCondition(int zoneId, decimal temp, decimal humidity)
+        {
+            using (var db = new ProductionProduceDbEntities())
+            {
+                var zone = db.StorageZones.Find(zoneId);
+
+                if (zone == null)
+                    throw new Exception("Zone not found.");
+
+                var log = new StorageConditionLog
+                {
+                    StorageZoneId = zoneId,
+                    LoggedAt = DateTime.Now,
+                    TemperatureC = temp,
+                    HumidityPct = humidity,
+                    Notes = "Manual entry"
+                };
+
+                db.StorageConditionLogs.Add(log);
+                db.SaveChanges();
+
+                Console.WriteLine("Condition logged successfully.");
+            }
+        }
+
+        // ======================================
+        // STORAGE DASHBOARD
+        // ======================================
+        static void ViewStorageDashboard()
+        {
+            using (var db = new ProductionProduceDbEntities())
+            {
+                var zones = db.StorageZones.ToList();
+
+                Console.WriteLine("\n=== STORAGE DASHBOARD ===\n");
+
+                foreach (var zone in zones)
+                {
+                    var latest = db.StorageConditionLogs
+                        .Where(x => x.StorageZoneId == zone.StorageZoneId)
+                        .OrderByDescending(x => x.LoggedAt)
+                        .FirstOrDefault();
+
+                    if (latest == null)
+                        continue;
+
+                    bool tempOk =
+                        latest.TemperatureC >= zone.TargetTempMinC &&
+                        latest.TemperatureC <= zone.TargetTempMaxC;
+
+                    bool humidityOk =
+                        latest.HumidityPct >= zone.TargetHumidityMinPct &&
+                        latest.HumidityPct <= zone.TargetHumidityMaxPct;
+
+                    string status = (tempOk && humidityOk) ? "OK" : "ALERT";
+
+                    Console.WriteLine($"Zone: {zone.Name}");
+                    Console.WriteLine($"Temp: {latest.TemperatureC}");
+                    Console.WriteLine($"Humidity: {latest.HumidityPct}");
+                    Console.WriteLine($"STATUS: {status}");
+                    Console.WriteLine("---------------------------");
+
+                    if (status == "ALERT")
+                    {
+                        db.AuditLogs.Add(new AuditLog
+                        {
+                            OccurredAt = DateTime.Now,
+                            Actor = "System",
+                            Action = "ALERT",
+                            EntityName = "StorageZone",
+                            EntityKey = zone.StorageZoneId.ToString()
+                        });
+
+                        db.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }
