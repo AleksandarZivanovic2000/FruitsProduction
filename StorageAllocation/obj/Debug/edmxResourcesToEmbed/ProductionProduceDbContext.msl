@@ -1,0 +1,560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProductionProduceDbModelStoreContainer" CdmEntityContainer="ProductionProduceDbEntities">
+    <EntitySetMapping Name="AgroApplications">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.AgroApplication">
+        <MappingFragment StoreEntitySet="AgroApplication">
+          <ScalarProperty Name="AgroApplicationId" ColumnName="AgroApplicationId" />
+          <ScalarProperty Name="AgroApplicationGuid" ColumnName="AgroApplicationGuid" />
+          <ScalarProperty Name="CropCycleId" ColumnName="CropCycleId" />
+          <ScalarProperty Name="AgroInputId" ColumnName="AgroInputId" />
+          <ScalarProperty Name="AppliedAt" ColumnName="AppliedAt" />
+          <ScalarProperty Name="DosePerHectare" ColumnName="DosePerHectare" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+          <ScalarProperty Name="WeatherNotes" ColumnName="WeatherNotes" />
+          <ScalarProperty Name="PreHarvestIntervalDays" ColumnName="PreHarvestIntervalDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgroInputs">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.AgroInput">
+        <MappingFragment StoreEntitySet="AgroInput">
+          <ScalarProperty Name="AgroInputId" ColumnName="AgroInputId" />
+          <ScalarProperty Name="AgroInputGuid" ColumnName="AgroInputGuid" />
+          <ScalarProperty Name="AgroInputTypeId" ColumnName="AgroInputTypeId" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ActiveSubstance" ColumnName="ActiveSubstance" />
+          <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgroInputTypes">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.AgroInputType">
+        <MappingFragment StoreEntitySet="AgroInputType">
+          <ScalarProperty Name="AgroInputTypeId" ColumnName="AgroInputTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuditLogs">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.AuditLog">
+        <MappingFragment StoreEntitySet="AuditLog">
+          <ScalarProperty Name="AuditLogId" ColumnName="AuditLogId" />
+          <ScalarProperty Name="OccurredAt" ColumnName="OccurredAt" />
+          <ScalarProperty Name="Actor" ColumnName="Actor" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+          <ScalarProperty Name="EntityKey" ColumnName="EntityKey" />
+          <ScalarProperty Name="CorrelationId" ColumnName="CorrelationId" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carriers">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Carrier">
+        <MappingFragment StoreEntitySet="Carrier">
+          <ScalarProperty Name="CarrierId" ColumnName="CarrierId" />
+          <ScalarProperty Name="CarrierGuid" ColumnName="CarrierGuid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Iso2" ColumnName="Iso2" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CropCycles">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.CropCycle">
+        <MappingFragment StoreEntitySet="CropCycle">
+          <ScalarProperty Name="CropCycleId" ColumnName="CropCycleId" />
+          <ScalarProperty Name="CropCycleGuid" ColumnName="CropCycleGuid" />
+          <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+          <ScalarProperty Name="ProduceVarietyId" ColumnName="ProduceVarietyId" />
+          <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+          <ScalarProperty Name="PlantingDate" ColumnName="PlantingDate" />
+          <ScalarProperty Name="ExpectedHarvestStart" ColumnName="ExpectedHarvestStart" />
+          <ScalarProperty Name="ExpectedHarvestEnd" ColumnName="ExpectedHarvestEnd" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerGuid" ColumnName="CustomerGuid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="VatNumber" ColumnName="VatNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Farms">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Farm">
+        <MappingFragment StoreEntitySet="Farm">
+          <ScalarProperty Name="FarmId" ColumnName="FarmId" />
+          <ScalarProperty Name="FarmGuid" ColumnName="FarmGuid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fields">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Field">
+        <MappingFragment StoreEntitySet="Field">
+          <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+          <ScalarProperty Name="FieldGuid" ColumnName="FieldGuid" />
+          <ScalarProperty Name="FarmId" ColumnName="FarmId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AreaHectares" ColumnName="AreaHectares" />
+          <ScalarProperty Name="SoilType" ColumnName="SoilType" />
+          <ScalarProperty Name="HasIrrigation" ColumnName="HasIrrigation" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HarvestLots">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.HarvestLot">
+        <MappingFragment StoreEntitySet="HarvestLot">
+          <ScalarProperty Name="HarvestLotId" ColumnName="HarvestLotId" />
+          <ScalarProperty Name="HarvestLotGuid" ColumnName="HarvestLotGuid" />
+          <ScalarProperty Name="CropCycleId" ColumnName="CropCycleId" />
+          <ScalarProperty Name="LotCode" ColumnName="LotCode" />
+          <ScalarProperty Name="HarvestDate" ColumnName="HarvestDate" />
+          <ScalarProperty Name="ShiftCode" ColumnName="ShiftCode" />
+          <ScalarProperty Name="PickerTeam" ColumnName="PickerTeam" />
+          <ScalarProperty Name="GrossQuantity" ColumnName="GrossQuantity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="LotStatusId" ColumnName="LotStatusId" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InspectionTypes">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.InspectionType">
+        <MappingFragment StoreEntitySet="InspectionType">
+          <ScalarProperty Name="InspectionTypeId" ColumnName="InspectionTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryMovements">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.InventoryMovement">
+        <MappingFragment StoreEntitySet="InventoryMovement">
+          <ScalarProperty Name="InventoryMovementId" ColumnName="InventoryMovementId" />
+          <ScalarProperty Name="InventoryMovementGuid" ColumnName="InventoryMovementGuid" />
+          <ScalarProperty Name="MovementTypeId" ColumnName="MovementTypeId" />
+          <ScalarProperty Name="HarvestLotId" ColumnName="HarvestLotId" />
+          <ScalarProperty Name="OccurredAt" ColumnName="OccurredAt" />
+          <ScalarProperty Name="FromStorageBinId" ColumnName="FromStorageBinId" />
+          <ScalarProperty Name="ToStorageBinId" ColumnName="ToStorageBinId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryMovementTypes">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.InventoryMovementType">
+        <MappingFragment StoreEntitySet="InventoryMovementType">
+          <ScalarProperty Name="InventoryMovementTypeId" ColumnName="InventoryMovementTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IrrigationEvents">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.IrrigationEvent">
+        <MappingFragment StoreEntitySet="IrrigationEvent">
+          <ScalarProperty Name="IrrigationEventId" ColumnName="IrrigationEventId" />
+          <ScalarProperty Name="IrrigationEventGuid" ColumnName="IrrigationEventGuid" />
+          <ScalarProperty Name="CropCycleId" ColumnName="CropCycleId" />
+          <ScalarProperty Name="StartedAt" ColumnName="StartedAt" />
+          <ScalarProperty Name="EndedAt" ColumnName="EndedAt" />
+          <ScalarProperty Name="WaterVolume" ColumnName="WaterVolume" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabResults">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.LabResult">
+        <MappingFragment StoreEntitySet="LabResult">
+          <ScalarProperty Name="LabResultId" ColumnName="LabResultId" />
+          <ScalarProperty Name="LabResultGuid" ColumnName="LabResultGuid" />
+          <ScalarProperty Name="LabSampleId" ColumnName="LabSampleId" />
+          <ScalarProperty Name="LabTestTypeId" ColumnName="LabTestTypeId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="MeasuredValue" ColumnName="MeasuredValue" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="LimitValue" ColumnName="LimitValue" />
+          <ScalarProperty Name="ReportedAt" ColumnName="ReportedAt" />
+          <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
+          <ScalarProperty Name="CertificateNo" ColumnName="CertificateNo" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabResultStatus">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.LabResultStatu">
+        <MappingFragment StoreEntitySet="LabResultStatus">
+          <ScalarProperty Name="LabResultStatusId" ColumnName="LabResultStatusId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabSamples">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.LabSample">
+        <MappingFragment StoreEntitySet="LabSample">
+          <ScalarProperty Name="LabSampleId" ColumnName="LabSampleId" />
+          <ScalarProperty Name="LabSampleGuid" ColumnName="LabSampleGuid" />
+          <ScalarProperty Name="HarvestLotId" ColumnName="HarvestLotId" />
+          <ScalarProperty Name="SampledAt" ColumnName="SampledAt" />
+          <ScalarProperty Name="SampleCode" ColumnName="SampleCode" />
+          <ScalarProperty Name="TakenBy" ColumnName="TakenBy" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabTestTypes">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.LabTestType">
+        <MappingFragment StoreEntitySet="LabTestType">
+          <ScalarProperty Name="LabTestTypeId" ColumnName="LabTestTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LotStatus">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.LotStatu">
+        <MappingFragment StoreEntitySet="LotStatus">
+          <ScalarProperty Name="LotStatusId" ColumnName="LotStatusId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatus">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.OrderStatu">
+        <MappingFragment StoreEntitySet="OrderStatus">
+          <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackagingTypes">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.PackagingType">
+        <MappingFragment StoreEntitySet="PackagingType">
+          <ScalarProperty Name="PackagingTypeId" ColumnName="PackagingTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackedProductLots">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.PackedProductLot">
+        <MappingFragment StoreEntitySet="PackedProductLot">
+          <ScalarProperty Name="PackedProductLotId" ColumnName="PackedProductLotId" />
+          <ScalarProperty Name="PackedProductLotGuid" ColumnName="PackedProductLotGuid" />
+          <ScalarProperty Name="PackingRunId" ColumnName="PackingRunId" />
+          <ScalarProperty Name="SourceHarvestLotId" ColumnName="SourceHarvestLotId" />
+          <ScalarProperty Name="PackedLotCode" ColumnName="PackedLotCode" />
+          <ScalarProperty Name="PackagingTypeId" ColumnName="PackagingTypeId" />
+          <ScalarProperty Name="NetQuantity" ColumnName="NetQuantity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="QualityGradeId" ColumnName="QualityGradeId" />
+          <ScalarProperty Name="PackedAt" ColumnName="PackedAt" />
+          <ScalarProperty Name="BestBeforeDate" ColumnName="BestBeforeDate" />
+          <ScalarProperty Name="LabelTemplate" ColumnName="LabelTemplate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackingRuns">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.PackingRun">
+        <MappingFragment StoreEntitySet="PackingRun">
+          <ScalarProperty Name="PackingRunId" ColumnName="PackingRunId" />
+          <ScalarProperty Name="PackingRunGuid" ColumnName="PackingRunGuid" />
+          <ScalarProperty Name="RunCode" ColumnName="RunCode" />
+          <ScalarProperty Name="StartedAt" ColumnName="StartedAt" />
+          <ScalarProperty Name="EndedAt" ColumnName="EndedAt" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pallets">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Pallet">
+        <MappingFragment StoreEntitySet="Pallet">
+          <ScalarProperty Name="PalletId" ColumnName="PalletId" />
+          <ScalarProperty Name="PalletGuid" ColumnName="PalletGuid" />
+          <ScalarProperty Name="PalletCode" ColumnName="PalletCode" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="StorageBinId" ColumnName="StorageBinId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PalletItems">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.PalletItem">
+        <MappingFragment StoreEntitySet="PalletItem">
+          <ScalarProperty Name="PalletItemId" ColumnName="PalletItemId" />
+          <ScalarProperty Name="PalletId" ColumnName="PalletId" />
+          <ScalarProperty Name="PackedProductLotId" ColumnName="PackedProductLotId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProduceTypes">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.ProduceType">
+        <MappingFragment StoreEntitySet="ProduceType">
+          <ScalarProperty Name="ProduceTypeId" ColumnName="ProduceTypeId" />
+          <ScalarProperty Name="ProduceTypeGuid" ColumnName="ProduceTypeGuid" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProduceVarieties">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.ProduceVariety">
+        <MappingFragment StoreEntitySet="ProduceVariety">
+          <ScalarProperty Name="ProduceVarietyId" ColumnName="ProduceVarietyId" />
+          <ScalarProperty Name="ProduceVarietyGuid" ColumnName="ProduceVarietyGuid" />
+          <ScalarProperty Name="ProduceTypeId" ColumnName="ProduceTypeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QualityGrades">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.QualityGrade">
+        <MappingFragment StoreEntitySet="QualityGrade">
+          <ScalarProperty Name="QualityGradeId" ColumnName="QualityGradeId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QualityInspections">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.QualityInspection">
+        <MappingFragment StoreEntitySet="QualityInspection">
+          <ScalarProperty Name="QualityInspectionId" ColumnName="QualityInspectionId" />
+          <ScalarProperty Name="QualityInspectionGuid" ColumnName="QualityInspectionGuid" />
+          <ScalarProperty Name="InspectionTypeId" ColumnName="InspectionTypeId" />
+          <ScalarProperty Name="HarvestLotId" ColumnName="HarvestLotId" />
+          <ScalarProperty Name="InspectedAt" ColumnName="InspectedAt" />
+          <ScalarProperty Name="InspectorName" ColumnName="InspectorName" />
+          <ScalarProperty Name="TemperatureC" ColumnName="TemperatureC" />
+          <ScalarProperty Name="VisualDefectsNotes" ColumnName="VisualDefectsNotes" />
+          <ScalarProperty Name="Brix" ColumnName="Brix" />
+          <ScalarProperty Name="MoisturePct" ColumnName="MoisturePct" />
+          <ScalarProperty Name="ProposedGradeId" ColumnName="ProposedGradeId" />
+          <ScalarProperty Name="ApprovedGradeId" ColumnName="ApprovedGradeId" />
+          <ScalarProperty Name="IsQuarantine" ColumnName="IsQuarantine" />
+          <ScalarProperty Name="QuarantineReason" ColumnName="QuarantineReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recalls">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Recall">
+        <MappingFragment StoreEntitySet="Recall">
+          <ScalarProperty Name="RecallId" ColumnName="RecallId" />
+          <ScalarProperty Name="RecallGuid" ColumnName="RecallGuid" />
+          <ScalarProperty Name="RecallCode" ColumnName="RecallCode" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="InitiatedBy" ColumnName="InitiatedBy" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecallTargets">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.RecallTarget">
+        <MappingFragment StoreEntitySet="RecallTarget">
+          <ScalarProperty Name="RecallTargetId" ColumnName="RecallTargetId" />
+          <ScalarProperty Name="RecallId" ColumnName="RecallId" />
+          <ScalarProperty Name="HarvestLotId" ColumnName="HarvestLotId" />
+          <ScalarProperty Name="PackedProductLotId" ColumnName="PackedProductLotId" />
+          <ScalarProperty Name="PalletId" ColumnName="PalletId" />
+          <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+          <ScalarProperty Name="HoldAppliedAt" ColumnName="HoldAppliedAt" />
+          <ScalarProperty Name="HoldReason" ColumnName="HoldReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesOrders">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.SalesOrder">
+        <MappingFragment StoreEntitySet="SalesOrder">
+          <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
+          <ScalarProperty Name="SalesOrderGuid" ColumnName="SalesOrderGuid" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+          <ScalarProperty Name="OrderedAt" ColumnName="OrderedAt" />
+          <ScalarProperty Name="RequestedShipDate" ColumnName="RequestedShipDate" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesOrderLines">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.SalesOrderLine">
+        <MappingFragment StoreEntitySet="SalesOrderLine">
+          <ScalarProperty Name="SalesOrderLineId" ColumnName="SalesOrderLineId" />
+          <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
+          <ScalarProperty Name="ProduceTypeId" ColumnName="ProduceTypeId" />
+          <ScalarProperty Name="ProduceVarietyId" ColumnName="ProduceVarietyId" />
+          <ScalarProperty Name="PackagingTypeId" ColumnName="PackagingTypeId" />
+          <ScalarProperty Name="RequestedGradeId" ColumnName="RequestedGradeId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seasons">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Season">
+        <MappingFragment StoreEntitySet="Season">
+          <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipments">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.Shipment">
+        <MappingFragment StoreEntitySet="Shipment">
+          <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+          <ScalarProperty Name="ShipmentGuid" ColumnName="ShipmentGuid" />
+          <ScalarProperty Name="ShipmentNo" ColumnName="ShipmentNo" />
+          <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
+          <ScalarProperty Name="CarrierId" ColumnName="CarrierId" />
+          <ScalarProperty Name="ShipmentStatusId" ColumnName="ShipmentStatusId" />
+          <ScalarProperty Name="PlannedLoadAt" ColumnName="PlannedLoadAt" />
+          <ScalarProperty Name="LoadedAt" ColumnName="LoadedAt" />
+          <ScalarProperty Name="DeliveredAt" ColumnName="DeliveredAt" />
+          <ScalarProperty Name="FromFacilityId" ColumnName="FromFacilityId" />
+          <ScalarProperty Name="ToAddress" ColumnName="ToAddress" />
+          <ScalarProperty Name="TemperatureSetpointC" ColumnName="TemperatureSetpointC" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipmentItems">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.ShipmentItem">
+        <MappingFragment StoreEntitySet="ShipmentItem">
+          <ScalarProperty Name="ShipmentItemId" ColumnName="ShipmentItemId" />
+          <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+          <ScalarProperty Name="PalletId" ColumnName="PalletId" />
+          <ScalarProperty Name="PackedProductLotId" ColumnName="PackedProductLotId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipmentStatus">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.ShipmentStatu">
+        <MappingFragment StoreEntitySet="ShipmentStatus">
+          <ScalarProperty Name="ShipmentStatusId" ColumnName="ShipmentStatusId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorageBins">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.StorageBin">
+        <MappingFragment StoreEntitySet="StorageBin">
+          <ScalarProperty Name="StorageBinId" ColumnName="StorageBinId" />
+          <ScalarProperty Name="StorageBinGuid" ColumnName="StorageBinGuid" />
+          <ScalarProperty Name="StorageZoneId" ColumnName="StorageZoneId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorageConditionLogs">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.StorageConditionLog">
+        <MappingFragment StoreEntitySet="StorageConditionLog">
+          <ScalarProperty Name="StorageConditionLogId" ColumnName="StorageConditionLogId" />
+          <ScalarProperty Name="StorageZoneId" ColumnName="StorageZoneId" />
+          <ScalarProperty Name="LoggedAt" ColumnName="LoggedAt" />
+          <ScalarProperty Name="TemperatureC" ColumnName="TemperatureC" />
+          <ScalarProperty Name="HumidityPct" ColumnName="HumidityPct" />
+          <ScalarProperty Name="Co2Ppm" ColumnName="Co2Ppm" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorageFacilities">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.StorageFacility">
+        <MappingFragment StoreEntitySet="StorageFacility">
+          <ScalarProperty Name="StorageFacilityId" ColumnName="StorageFacilityId" />
+          <ScalarProperty Name="StorageFacilityGuid" ColumnName="StorageFacilityGuid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FarmId" ColumnName="FarmId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorageZones">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.StorageZone">
+        <MappingFragment StoreEntitySet="StorageZone">
+          <ScalarProperty Name="StorageZoneId" ColumnName="StorageZoneId" />
+          <ScalarProperty Name="StorageZoneGuid" ColumnName="StorageZoneGuid" />
+          <ScalarProperty Name="StorageFacilityId" ColumnName="StorageFacilityId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TargetTempMinC" ColumnName="TargetTempMinC" />
+          <ScalarProperty Name="TargetTempMaxC" ColumnName="TargetTempMaxC" />
+          <ScalarProperty Name="TargetHumidityMinPct" ColumnName="TargetHumidityMinPct" />
+          <ScalarProperty Name="TargetHumidityMaxPct" ColumnName="TargetHumidityMaxPct" />
+          <ScalarProperty Name="IsQuarantineZone" ColumnName="IsQuarantineZone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitOfMeasures">
+      <EntityTypeMapping TypeName="ProductionProduceDbModel.UnitOfMeasure">
+        <MappingFragment StoreEntitySet="UnitOfMeasure">
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

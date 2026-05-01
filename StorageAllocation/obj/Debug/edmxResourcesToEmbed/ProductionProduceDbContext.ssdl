@@ -1,0 +1,1632 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductionProduceDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AgroApplication">
+    <Key>
+      <PropertyRef Name="AgroApplicationId" />
+    </Key>
+    <Property Name="AgroApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgroApplicationGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CropCycleId" Type="int" Nullable="false" />
+    <Property Name="AgroInputId" Type="int" Nullable="false" />
+    <Property Name="AppliedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="DosePerHectare" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="UnitOfMeasureId" Type="int" />
+    <Property Name="OperatorName" Type="nvarchar" MaxLength="150" />
+    <Property Name="WeatherNotes" Type="nvarchar" MaxLength="500" />
+    <Property Name="PreHarvestIntervalDays" Type="int" />
+  </EntityType>
+  <EntityType Name="AgroInput">
+    <Key>
+      <PropertyRef Name="AgroInputId" />
+    </Key>
+    <Property Name="AgroInputId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgroInputGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AgroInputTypeId" Type="int" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ActiveSubstance" Type="nvarchar" MaxLength="200" />
+    <Property Name="RegistrationNo" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="AgroInputType">
+    <Key>
+      <PropertyRef Name="AgroInputTypeId" />
+    </Key>
+    <Property Name="AgroInputTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AuditLog">
+    <Key>
+      <PropertyRef Name="AuditLogId" />
+    </Key>
+    <Property Name="AuditLogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OccurredAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="Actor" Type="nvarchar" MaxLength="150" />
+    <Property Name="Action" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="EntityName" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="EntityKey" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="CorrelationId" Type="nvarchar" MaxLength="80" />
+    <Property Name="Details" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Carrier">
+    <Key>
+      <PropertyRef Name="CarrierId" />
+    </Key>
+    <Property Name="CarrierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarrierGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="60" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Iso2" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CropCycle">
+    <Key>
+      <PropertyRef Name="CropCycleId" />
+    </Key>
+    <Property Name="CropCycleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CropCycleGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FieldId" Type="int" Nullable="false" />
+    <Property Name="ProduceVarietyId" Type="int" Nullable="false" />
+    <Property Name="SeasonId" Type="int" />
+    <Property Name="PlantingDate" Type="date" Nullable="false" />
+    <Property Name="ExpectedHarvestStart" Type="date" />
+    <Property Name="ExpectedHarvestEnd" Type="date" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="VatNumber" Type="nvarchar" MaxLength="40" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Farm">
+    <Key>
+      <PropertyRef Name="FarmId" />
+    </Key>
+    <Property Name="FarmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FarmGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="Region" Type="nvarchar" MaxLength="120" />
+    <Property Name="City" Type="nvarchar" MaxLength="120" />
+    <Property Name="AddressLine1" Type="nvarchar" MaxLength="200" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Latitude" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Field">
+    <Key>
+      <PropertyRef Name="FieldId" />
+    </Key>
+    <Property Name="FieldId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FieldGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FarmId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="AreaHectares" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="SoilType" Type="nvarchar" MaxLength="80" />
+    <Property Name="HasIrrigation" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HarvestLot">
+    <Key>
+      <PropertyRef Name="HarvestLotId" />
+    </Key>
+    <Property Name="HarvestLotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HarvestLotGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CropCycleId" Type="int" Nullable="false" />
+    <Property Name="LotCode" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="HarvestDate" Type="date" Nullable="false" />
+    <Property Name="ShiftCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="PickerTeam" Type="nvarchar" MaxLength="120" />
+    <Property Name="GrossQuantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+    <Property Name="LotStatusId" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="InspectionType">
+    <Key>
+      <PropertyRef Name="InspectionTypeId" />
+    </Key>
+    <Property Name="InspectionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventoryMovement">
+    <Key>
+      <PropertyRef Name="InventoryMovementId" />
+    </Key>
+    <Property Name="InventoryMovementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InventoryMovementGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MovementTypeId" Type="int" Nullable="false" />
+    <Property Name="HarvestLotId" Type="int" Nullable="false" />
+    <Property Name="OccurredAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="FromStorageBinId" Type="int" />
+    <Property Name="ToStorageBinId" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+    <Property Name="Reference" Type="nvarchar" MaxLength="80" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="InventoryMovementType">
+    <Key>
+      <PropertyRef Name="InventoryMovementTypeId" />
+    </Key>
+    <Property Name="InventoryMovementTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IrrigationEvent">
+    <Key>
+      <PropertyRef Name="IrrigationEventId" />
+    </Key>
+    <Property Name="IrrigationEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IrrigationEventGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CropCycleId" Type="int" Nullable="false" />
+    <Property Name="StartedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="EndedAt" Type="datetime2" Precision="0" />
+    <Property Name="WaterVolume" Type="decimal" Precision="12" Scale="3" />
+    <Property Name="UnitOfMeasureId" Type="int" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="LabResult">
+    <Key>
+      <PropertyRef Name="LabResultId" />
+    </Key>
+    <Property Name="LabResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LabResultGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LabSampleId" Type="int" Nullable="false" />
+    <Property Name="LabTestTypeId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="MeasuredValue" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="UnitOfMeasureId" Type="int" />
+    <Property Name="LimitValue" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="ReportedAt" Type="datetime2" Precision="0" />
+    <Property Name="LaboratoryName" Type="nvarchar" MaxLength="200" />
+    <Property Name="CertificateNo" Type="nvarchar" MaxLength="80" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="LabResultStatus">
+    <Key>
+      <PropertyRef Name="LabResultStatusId" />
+    </Key>
+    <Property Name="LabResultStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LabSample">
+    <Key>
+      <PropertyRef Name="LabSampleId" />
+    </Key>
+    <Property Name="LabSampleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LabSampleGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HarvestLotId" Type="int" Nullable="false" />
+    <Property Name="SampledAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="SampleCode" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="TakenBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="LabTestType">
+    <Key>
+      <PropertyRef Name="LabTestTypeId" />
+    </Key>
+    <Property Name="LabTestTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LotStatus">
+    <Key>
+      <PropertyRef Name="LotStatusId" />
+    </Key>
+    <Property Name="LotStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="OrderStatusId" />
+    </Key>
+    <Property Name="OrderStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PackagingType">
+    <Key>
+      <PropertyRef Name="PackagingTypeId" />
+    </Key>
+    <Property Name="PackagingTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PackedProductLot">
+    <Key>
+      <PropertyRef Name="PackedProductLotId" />
+    </Key>
+    <Property Name="PackedProductLotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PackedProductLotGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PackingRunId" Type="int" Nullable="false" />
+    <Property Name="SourceHarvestLotId" Type="int" Nullable="false" />
+    <Property Name="PackedLotCode" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="PackagingTypeId" Type="int" Nullable="false" />
+    <Property Name="NetQuantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+    <Property Name="QualityGradeId" Type="int" />
+    <Property Name="PackedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="BestBeforeDate" Type="date" />
+    <Property Name="LabelTemplate" Type="nvarchar" MaxLength="120" />
+  </EntityType>
+  <EntityType Name="PackingRun">
+    <Key>
+      <PropertyRef Name="PackingRunId" />
+    </Key>
+    <Property Name="PackingRunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PackingRunGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RunCode" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="StartedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="EndedAt" Type="datetime2" Precision="0" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="Pallet">
+    <Key>
+      <PropertyRef Name="PalletId" />
+    </Key>
+    <Property Name="PalletId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PalletGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PalletCode" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="StorageBinId" Type="int" />
+  </EntityType>
+  <EntityType Name="PalletItem">
+    <Key>
+      <PropertyRef Name="PalletItemId" />
+    </Key>
+    <Property Name="PalletItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PalletId" Type="int" Nullable="false" />
+    <Property Name="PackedProductLotId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProduceType">
+    <Key>
+      <PropertyRef Name="ProduceTypeId" />
+    </Key>
+    <Property Name="ProduceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProduceTypeGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProduceVariety">
+    <Key>
+      <PropertyRef Name="ProduceVarietyId" />
+    </Key>
+    <Property Name="ProduceVarietyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProduceVarietyGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProduceTypeId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="QualityGrade">
+    <Key>
+      <PropertyRef Name="QualityGradeId" />
+    </Key>
+    <Property Name="QualityGradeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="QualityInspection">
+    <Key>
+      <PropertyRef Name="QualityInspectionId" />
+    </Key>
+    <Property Name="QualityInspectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QualityInspectionGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InspectionTypeId" Type="int" Nullable="false" />
+    <Property Name="HarvestLotId" Type="int" Nullable="false" />
+    <Property Name="InspectedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="InspectorName" Type="nvarchar" MaxLength="150" />
+    <Property Name="TemperatureC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="VisualDefectsNotes" Type="nvarchar" MaxLength="800" />
+    <Property Name="Brix" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MoisturePct" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="ProposedGradeId" Type="int" />
+    <Property Name="ApprovedGradeId" Type="int" />
+    <Property Name="IsQuarantine" Type="bit" Nullable="false" />
+    <Property Name="QuarantineReason" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Recall">
+    <Key>
+      <PropertyRef Name="RecallId" />
+    </Key>
+    <Property Name="RecallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecallGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RecallCode" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="800" Nullable="false" />
+    <Property Name="InitiatedBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="RecallTarget">
+    <Key>
+      <PropertyRef Name="RecallTargetId" />
+    </Key>
+    <Property Name="RecallTargetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecallId" Type="int" Nullable="false" />
+    <Property Name="HarvestLotId" Type="int" />
+    <Property Name="PackedProductLotId" Type="int" />
+    <Property Name="PalletId" Type="int" />
+    <Property Name="ShipmentId" Type="int" />
+    <Property Name="HoldAppliedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="HoldReason" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="SalesOrder">
+    <Key>
+      <PropertyRef Name="SalesOrderId" />
+    </Key>
+    <Property Name="SalesOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalesOrderGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderNo" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="OrderStatusId" Type="int" Nullable="false" />
+    <Property Name="OrderedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="RequestedShipDate" Type="date" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="SalesOrderLine">
+    <Key>
+      <PropertyRef Name="SalesOrderLineId" />
+    </Key>
+    <Property Name="SalesOrderLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalesOrderId" Type="int" Nullable="false" />
+    <Property Name="ProduceTypeId" Type="int" Nullable="false" />
+    <Property Name="ProduceVarietyId" Type="int" />
+    <Property Name="PackagingTypeId" Type="int" />
+    <Property Name="RequestedGradeId" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="SeasonId" />
+    </Key>
+    <Property Name="SeasonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Shipment">
+    <Key>
+      <PropertyRef Name="ShipmentId" />
+    </Key>
+    <Property Name="ShipmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipmentGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ShipmentNo" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="SalesOrderId" Type="int" Nullable="false" />
+    <Property Name="CarrierId" Type="int" />
+    <Property Name="ShipmentStatusId" Type="int" Nullable="false" />
+    <Property Name="PlannedLoadAt" Type="datetime2" Precision="0" />
+    <Property Name="LoadedAt" Type="datetime2" Precision="0" />
+    <Property Name="DeliveredAt" Type="datetime2" Precision="0" />
+    <Property Name="FromFacilityId" Type="int" Nullable="false" />
+    <Property Name="ToAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TemperatureSetpointC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="ShipmentItem">
+    <Key>
+      <PropertyRef Name="ShipmentItemId" />
+    </Key>
+    <Property Name="ShipmentItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipmentId" Type="int" Nullable="false" />
+    <Property Name="PalletId" Type="int" />
+    <Property Name="PackedProductLotId" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShipmentStatus">
+    <Key>
+      <PropertyRef Name="ShipmentStatusId" />
+    </Key>
+    <Property Name="ShipmentStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StorageBin">
+    <Key>
+      <PropertyRef Name="StorageBinId" />
+    </Key>
+    <Property Name="StorageBinId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageBinGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StorageZoneId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Capacity" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="UnitOfMeasureId" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StorageConditionLog">
+    <Key>
+      <PropertyRef Name="StorageConditionLogId" />
+    </Key>
+    <Property Name="StorageConditionLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageZoneId" Type="int" Nullable="false" />
+    <Property Name="LoggedAt" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="TemperatureC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="HumidityPct" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Co2Ppm" Type="int" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="StorageFacility">
+    <Key>
+      <PropertyRef Name="StorageFacilityId" />
+    </Key>
+    <Property Name="StorageFacilityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageFacilityGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FarmId" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StorageZone">
+    <Key>
+      <PropertyRef Name="StorageZoneId" />
+    </Key>
+    <Property Name="StorageZoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageZoneGuid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StorageFacilityId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="TargetTempMinC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="TargetTempMaxC" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="TargetHumidityMinPct" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="TargetHumidityMaxPct" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="IsQuarantineZone" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnitOfMeasure">
+    <Key>
+      <PropertyRef Name="UnitOfMeasureId" />
+    </Key>
+    <Property Name="UnitOfMeasureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AgroApplication_CropCycle">
+    <End Role="CropCycle" Type="Self.CropCycle" Multiplicity="1" />
+    <End Role="AgroApplication" Type="Self.AgroApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CropCycle">
+        <PropertyRef Name="CropCycleId" />
+      </Principal>
+      <Dependent Role="AgroApplication">
+        <PropertyRef Name="CropCycleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgroApplication_Input">
+    <End Role="AgroInput" Type="Self.AgroInput" Multiplicity="1" />
+    <End Role="AgroApplication" Type="Self.AgroApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgroInput">
+        <PropertyRef Name="AgroInputId" />
+      </Principal>
+      <Dependent Role="AgroApplication">
+        <PropertyRef Name="AgroInputId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgroApplication_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="0..1" />
+    <End Role="AgroApplication" Type="Self.AgroApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="AgroApplication">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgroInput_Type">
+    <End Role="AgroInputType" Type="Self.AgroInputType" Multiplicity="1" />
+    <End Role="AgroInput" Type="Self.AgroInput" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgroInputType">
+        <PropertyRef Name="AgroInputTypeId" />
+      </Principal>
+      <Dependent Role="AgroInput">
+        <PropertyRef Name="AgroInputTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CropCycle_Field">
+    <End Role="Field" Type="Self.Field" Multiplicity="1" />
+    <End Role="CropCycle" Type="Self.CropCycle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Field">
+        <PropertyRef Name="FieldId" />
+      </Principal>
+      <Dependent Role="CropCycle">
+        <PropertyRef Name="FieldId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CropCycle_Season">
+    <End Role="Season" Type="Self.Season" Multiplicity="0..1" />
+    <End Role="CropCycle" Type="Self.CropCycle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="SeasonId" />
+      </Principal>
+      <Dependent Role="CropCycle">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CropCycle_Variety">
+    <End Role="ProduceVariety" Type="Self.ProduceVariety" Multiplicity="1" />
+    <End Role="CropCycle" Type="Self.CropCycle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProduceVariety">
+        <PropertyRef Name="ProduceVarietyId" />
+      </Principal>
+      <Dependent Role="CropCycle">
+        <PropertyRef Name="ProduceVarietyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Farm_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Farm" Type="Self.Farm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Farm">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Field_Farm">
+    <End Role="Farm" Type="Self.Farm" Multiplicity="1" />
+    <End Role="Field" Type="Self.Field" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Farm">
+        <PropertyRef Name="FarmId" />
+      </Principal>
+      <Dependent Role="Field">
+        <PropertyRef Name="FarmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HarvestLot_CropCycle">
+    <End Role="CropCycle" Type="Self.CropCycle" Multiplicity="1" />
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CropCycle">
+        <PropertyRef Name="CropCycleId" />
+      </Principal>
+      <Dependent Role="HarvestLot">
+        <PropertyRef Name="CropCycleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HarvestLot_Status">
+    <End Role="LotStatus" Type="Self.LotStatus" Multiplicity="1" />
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LotStatus">
+        <PropertyRef Name="LotStatusId" />
+      </Principal>
+      <Dependent Role="HarvestLot">
+        <PropertyRef Name="LotStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HarvestLot_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="HarvestLot">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IM_FromBin">
+    <End Role="StorageBin" Type="Self.StorageBin" Multiplicity="0..1" />
+    <End Role="InventoryMovement" Type="Self.InventoryMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageBin">
+        <PropertyRef Name="StorageBinId" />
+      </Principal>
+      <Dependent Role="InventoryMovement">
+        <PropertyRef Name="FromStorageBinId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IM_Lot">
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="1" />
+    <End Role="InventoryMovement" Type="Self.InventoryMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HarvestLot">
+        <PropertyRef Name="HarvestLotId" />
+      </Principal>
+      <Dependent Role="InventoryMovement">
+        <PropertyRef Name="HarvestLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IM_ToBin">
+    <End Role="StorageBin" Type="Self.StorageBin" Multiplicity="0..1" />
+    <End Role="InventoryMovement" Type="Self.InventoryMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageBin">
+        <PropertyRef Name="StorageBinId" />
+      </Principal>
+      <Dependent Role="InventoryMovement">
+        <PropertyRef Name="ToStorageBinId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IM_Type">
+    <End Role="InventoryMovementType" Type="Self.InventoryMovementType" Multiplicity="1" />
+    <End Role="InventoryMovement" Type="Self.InventoryMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventoryMovementType">
+        <PropertyRef Name="InventoryMovementTypeId" />
+      </Principal>
+      <Dependent Role="InventoryMovement">
+        <PropertyRef Name="MovementTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IM_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+    <End Role="InventoryMovement" Type="Self.InventoryMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="InventoryMovement">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IrrigationEvent_CropCycle">
+    <End Role="CropCycle" Type="Self.CropCycle" Multiplicity="1" />
+    <End Role="IrrigationEvent" Type="Self.IrrigationEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CropCycle">
+        <PropertyRef Name="CropCycleId" />
+      </Principal>
+      <Dependent Role="IrrigationEvent">
+        <PropertyRef Name="CropCycleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IrrigationEvent_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="0..1" />
+    <End Role="IrrigationEvent" Type="Self.IrrigationEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="IrrigationEvent">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabResult_Sample">
+    <End Role="LabSample" Type="Self.LabSample" Multiplicity="1" />
+    <End Role="LabResult" Type="Self.LabResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabSample">
+        <PropertyRef Name="LabSampleId" />
+      </Principal>
+      <Dependent Role="LabResult">
+        <PropertyRef Name="LabSampleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabResult_Status">
+    <End Role="LabResultStatus" Type="Self.LabResultStatus" Multiplicity="1" />
+    <End Role="LabResult" Type="Self.LabResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabResultStatus">
+        <PropertyRef Name="LabResultStatusId" />
+      </Principal>
+      <Dependent Role="LabResult">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabResult_TestType">
+    <End Role="LabTestType" Type="Self.LabTestType" Multiplicity="1" />
+    <End Role="LabResult" Type="Self.LabResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabTestType">
+        <PropertyRef Name="LabTestTypeId" />
+      </Principal>
+      <Dependent Role="LabResult">
+        <PropertyRef Name="LabTestTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabResult_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="0..1" />
+    <End Role="LabResult" Type="Self.LabResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="LabResult">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LabSample_Lot">
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="1" />
+    <End Role="LabSample" Type="Self.LabSample" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HarvestLot">
+        <PropertyRef Name="HarvestLotId" />
+      </Principal>
+      <Dependent Role="LabSample">
+        <PropertyRef Name="HarvestLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackingRun_Facility">
+    <End Role="StorageFacility" Type="Self.StorageFacility" Multiplicity="1" />
+    <End Role="PackingRun" Type="Self.PackingRun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageFacility">
+        <PropertyRef Name="StorageFacilityId" />
+      </Principal>
+      <Dependent Role="PackingRun">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pallet_Bin">
+    <End Role="StorageBin" Type="Self.StorageBin" Multiplicity="0..1" />
+    <End Role="Pallet" Type="Self.Pallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageBin">
+        <PropertyRef Name="StorageBinId" />
+      </Principal>
+      <Dependent Role="Pallet">
+        <PropertyRef Name="StorageBinId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pallet_Facility">
+    <End Role="StorageFacility" Type="Self.StorageFacility" Multiplicity="1" />
+    <End Role="Pallet" Type="Self.Pallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageFacility">
+        <PropertyRef Name="StorageFacilityId" />
+      </Principal>
+      <Dependent Role="Pallet">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PalletItem_PackedLot">
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="1" />
+    <End Role="PalletItem" Type="Self.PalletItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackedProductLot">
+        <PropertyRef Name="PackedProductLotId" />
+      </Principal>
+      <Dependent Role="PalletItem">
+        <PropertyRef Name="PackedProductLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PalletItem_Pallet">
+    <End Role="Pallet" Type="Self.Pallet" Multiplicity="1" />
+    <End Role="PalletItem" Type="Self.PalletItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pallet">
+        <PropertyRef Name="PalletId" />
+      </Principal>
+      <Dependent Role="PalletItem">
+        <PropertyRef Name="PalletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PalletItem_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+    <End Role="PalletItem" Type="Self.PalletItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="PalletItem">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PPL_Grade">
+    <End Role="QualityGrade" Type="Self.QualityGrade" Multiplicity="0..1" />
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QualityGrade">
+        <PropertyRef Name="QualityGradeId" />
+      </Principal>
+      <Dependent Role="PackedProductLot">
+        <PropertyRef Name="QualityGradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PPL_Packaging">
+    <End Role="PackagingType" Type="Self.PackagingType" Multiplicity="1" />
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackagingType">
+        <PropertyRef Name="PackagingTypeId" />
+      </Principal>
+      <Dependent Role="PackedProductLot">
+        <PropertyRef Name="PackagingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PPL_Run">
+    <End Role="PackingRun" Type="Self.PackingRun" Multiplicity="1" />
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingRun">
+        <PropertyRef Name="PackingRunId" />
+      </Principal>
+      <Dependent Role="PackedProductLot">
+        <PropertyRef Name="PackingRunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PPL_SourceLot">
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="1" />
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HarvestLot">
+        <PropertyRef Name="HarvestLotId" />
+      </Principal>
+      <Dependent Role="PackedProductLot">
+        <PropertyRef Name="SourceHarvestLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PPL_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="PackedProductLot">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceVariety_ProduceType">
+    <End Role="ProduceType" Type="Self.ProduceType" Multiplicity="1" />
+    <End Role="ProduceVariety" Type="Self.ProduceVariety" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProduceType">
+        <PropertyRef Name="ProduceTypeId" />
+      </Principal>
+      <Dependent Role="ProduceVariety">
+        <PropertyRef Name="ProduceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QI_ApprovedGrade">
+    <End Role="QualityGrade" Type="Self.QualityGrade" Multiplicity="0..1" />
+    <End Role="QualityInspection" Type="Self.QualityInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QualityGrade">
+        <PropertyRef Name="QualityGradeId" />
+      </Principal>
+      <Dependent Role="QualityInspection">
+        <PropertyRef Name="ApprovedGradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QI_Lot">
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="1" />
+    <End Role="QualityInspection" Type="Self.QualityInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HarvestLot">
+        <PropertyRef Name="HarvestLotId" />
+      </Principal>
+      <Dependent Role="QualityInspection">
+        <PropertyRef Name="HarvestLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QI_ProposedGrade">
+    <End Role="QualityGrade" Type="Self.QualityGrade" Multiplicity="0..1" />
+    <End Role="QualityInspection" Type="Self.QualityInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QualityGrade">
+        <PropertyRef Name="QualityGradeId" />
+      </Principal>
+      <Dependent Role="QualityInspection">
+        <PropertyRef Name="ProposedGradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QI_Type">
+    <End Role="InspectionType" Type="Self.InspectionType" Multiplicity="1" />
+    <End Role="QualityInspection" Type="Self.QualityInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InspectionType">
+        <PropertyRef Name="InspectionTypeId" />
+      </Principal>
+      <Dependent Role="QualityInspection">
+        <PropertyRef Name="InspectionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecallTarget_HarvestLot">
+    <End Role="HarvestLot" Type="Self.HarvestLot" Multiplicity="0..1" />
+    <End Role="RecallTarget" Type="Self.RecallTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HarvestLot">
+        <PropertyRef Name="HarvestLotId" />
+      </Principal>
+      <Dependent Role="RecallTarget">
+        <PropertyRef Name="HarvestLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecallTarget_PackedLot">
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="0..1" />
+    <End Role="RecallTarget" Type="Self.RecallTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackedProductLot">
+        <PropertyRef Name="PackedProductLotId" />
+      </Principal>
+      <Dependent Role="RecallTarget">
+        <PropertyRef Name="PackedProductLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecallTarget_Pallet">
+    <End Role="Pallet" Type="Self.Pallet" Multiplicity="0..1" />
+    <End Role="RecallTarget" Type="Self.RecallTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pallet">
+        <PropertyRef Name="PalletId" />
+      </Principal>
+      <Dependent Role="RecallTarget">
+        <PropertyRef Name="PalletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecallTarget_Recall">
+    <End Role="Recall" Type="Self.Recall" Multiplicity="1" />
+    <End Role="RecallTarget" Type="Self.RecallTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recall">
+        <PropertyRef Name="RecallId" />
+      </Principal>
+      <Dependent Role="RecallTarget">
+        <PropertyRef Name="RecallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecallTarget_Shipment">
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="0..1" />
+    <End Role="RecallTarget" Type="Self.RecallTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentId" />
+      </Principal>
+      <Dependent Role="RecallTarget">
+        <PropertyRef Name="ShipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrder_Status">
+    <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="OrderStatusId" />
+      </Principal>
+      <Dependent Role="SalesOrder">
+        <PropertyRef Name="OrderStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipment_Carrier">
+    <End Role="Carrier" Type="Self.Carrier" Multiplicity="0..1" />
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrier">
+        <PropertyRef Name="CarrierId" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="CarrierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipment_FromFacility">
+    <End Role="StorageFacility" Type="Self.StorageFacility" Multiplicity="1" />
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageFacility">
+        <PropertyRef Name="StorageFacilityId" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="FromFacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipment_Order">
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="1" />
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrder">
+        <PropertyRef Name="SalesOrderId" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="SalesOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shipment_Status">
+    <End Role="ShipmentStatus" Type="Self.ShipmentStatus" Multiplicity="1" />
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShipmentStatus">
+        <PropertyRef Name="ShipmentStatusId" />
+      </Principal>
+      <Dependent Role="Shipment">
+        <PropertyRef Name="ShipmentStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentItem_PackedLot">
+    <End Role="PackedProductLot" Type="Self.PackedProductLot" Multiplicity="0..1" />
+    <End Role="ShipmentItem" Type="Self.ShipmentItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackedProductLot">
+        <PropertyRef Name="PackedProductLotId" />
+      </Principal>
+      <Dependent Role="ShipmentItem">
+        <PropertyRef Name="PackedProductLotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentItem_Pallet">
+    <End Role="Pallet" Type="Self.Pallet" Multiplicity="0..1" />
+    <End Role="ShipmentItem" Type="Self.ShipmentItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pallet">
+        <PropertyRef Name="PalletId" />
+      </Principal>
+      <Dependent Role="ShipmentItem">
+        <PropertyRef Name="PalletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentItem_Shipment">
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="1" />
+    <End Role="ShipmentItem" Type="Self.ShipmentItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentId" />
+      </Principal>
+      <Dependent Role="ShipmentItem">
+        <PropertyRef Name="ShipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentItem_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+    <End Role="ShipmentItem" Type="Self.ShipmentItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="ShipmentItem">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOL_Grade">
+    <End Role="QualityGrade" Type="Self.QualityGrade" Multiplicity="0..1" />
+    <End Role="SalesOrderLine" Type="Self.SalesOrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QualityGrade">
+        <PropertyRef Name="QualityGradeId" />
+      </Principal>
+      <Dependent Role="SalesOrderLine">
+        <PropertyRef Name="RequestedGradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOL_Order">
+    <End Role="SalesOrder" Type="Self.SalesOrder" Multiplicity="1" />
+    <End Role="SalesOrderLine" Type="Self.SalesOrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrder">
+        <PropertyRef Name="SalesOrderId" />
+      </Principal>
+      <Dependent Role="SalesOrderLine">
+        <PropertyRef Name="SalesOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOL_Packaging">
+    <End Role="PackagingType" Type="Self.PackagingType" Multiplicity="0..1" />
+    <End Role="SalesOrderLine" Type="Self.SalesOrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackagingType">
+        <PropertyRef Name="PackagingTypeId" />
+      </Principal>
+      <Dependent Role="SalesOrderLine">
+        <PropertyRef Name="PackagingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOL_ProduceType">
+    <End Role="ProduceType" Type="Self.ProduceType" Multiplicity="1" />
+    <End Role="SalesOrderLine" Type="Self.SalesOrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProduceType">
+        <PropertyRef Name="ProduceTypeId" />
+      </Principal>
+      <Dependent Role="SalesOrderLine">
+        <PropertyRef Name="ProduceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOL_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="1" />
+    <End Role="SalesOrderLine" Type="Self.SalesOrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="SalesOrderLine">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOL_Variety">
+    <End Role="ProduceVariety" Type="Self.ProduceVariety" Multiplicity="0..1" />
+    <End Role="SalesOrderLine" Type="Self.SalesOrderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProduceVariety">
+        <PropertyRef Name="ProduceVarietyId" />
+      </Principal>
+      <Dependent Role="SalesOrderLine">
+        <PropertyRef Name="ProduceVarietyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageBin_UoM">
+    <End Role="UnitOfMeasure" Type="Self.UnitOfMeasure" Multiplicity="0..1" />
+    <End Role="StorageBin" Type="Self.StorageBin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Principal>
+      <Dependent Role="StorageBin">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageBin_Zone">
+    <End Role="StorageZone" Type="Self.StorageZone" Multiplicity="1" />
+    <End Role="StorageBin" Type="Self.StorageBin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageZone">
+        <PropertyRef Name="StorageZoneId" />
+      </Principal>
+      <Dependent Role="StorageBin">
+        <PropertyRef Name="StorageZoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageCondition_Zone">
+    <End Role="StorageZone" Type="Self.StorageZone" Multiplicity="1" />
+    <End Role="StorageConditionLog" Type="Self.StorageConditionLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageZone">
+        <PropertyRef Name="StorageZoneId" />
+      </Principal>
+      <Dependent Role="StorageConditionLog">
+        <PropertyRef Name="StorageZoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageFacility_Farm">
+    <End Role="Farm" Type="Self.Farm" Multiplicity="0..1" />
+    <End Role="StorageFacility" Type="Self.StorageFacility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Farm">
+        <PropertyRef Name="FarmId" />
+      </Principal>
+      <Dependent Role="StorageFacility">
+        <PropertyRef Name="FarmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageZone_Facility">
+    <End Role="StorageFacility" Type="Self.StorageFacility" Multiplicity="1" />
+    <End Role="StorageZone" Type="Self.StorageZone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageFacility">
+        <PropertyRef Name="StorageFacilityId" />
+      </Principal>
+      <Dependent Role="StorageZone">
+        <PropertyRef Name="StorageFacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProductionProduceDbModelStoreContainer">
+    <EntitySet Name="AgroApplication" EntityType="Self.AgroApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgroInput" EntityType="Self.AgroInput" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgroInputType" EntityType="Self.AgroInputType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carrier" EntityType="Self.Carrier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CropCycle" EntityType="Self.CropCycle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Farm" EntityType="Self.Farm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Field" EntityType="Self.Field" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HarvestLot" EntityType="Self.HarvestLot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InspectionType" EntityType="Self.InspectionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventoryMovement" EntityType="Self.InventoryMovement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventoryMovementType" EntityType="Self.InventoryMovementType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IrrigationEvent" EntityType="Self.IrrigationEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabResult" EntityType="Self.LabResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabResultStatus" EntityType="Self.LabResultStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabSample" EntityType="Self.LabSample" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabTestType" EntityType="Self.LabTestType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LotStatus" EntityType="Self.LotStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PackagingType" EntityType="Self.PackagingType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PackedProductLot" EntityType="Self.PackedProductLot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PackingRun" EntityType="Self.PackingRun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pallet" EntityType="Self.Pallet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PalletItem" EntityType="Self.PalletItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProduceType" EntityType="Self.ProduceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProduceVariety" EntityType="Self.ProduceVariety" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QualityGrade" EntityType="Self.QualityGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QualityInspection" EntityType="Self.QualityInspection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Recall" EntityType="Self.Recall" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecallTarget" EntityType="Self.RecallTarget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesOrder" EntityType="Self.SalesOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesOrderLine" EntityType="Self.SalesOrderLine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Season" EntityType="Self.Season" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shipment" EntityType="Self.Shipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentItem" EntityType="Self.ShipmentItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentStatus" EntityType="Self.ShipmentStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorageBin" EntityType="Self.StorageBin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorageConditionLog" EntityType="Self.StorageConditionLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorageFacility" EntityType="Self.StorageFacility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorageZone" EntityType="Self.StorageZone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitOfMeasure" EntityType="Self.UnitOfMeasure" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AgroApplication_CropCycle" Association="Self.FK_AgroApplication_CropCycle">
+      <End Role="CropCycle" EntitySet="CropCycle" />
+      <End Role="AgroApplication" EntitySet="AgroApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgroApplication_Input" Association="Self.FK_AgroApplication_Input">
+      <End Role="AgroInput" EntitySet="AgroInput" />
+      <End Role="AgroApplication" EntitySet="AgroApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgroApplication_UoM" Association="Self.FK_AgroApplication_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="AgroApplication" EntitySet="AgroApplication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgroInput_Type" Association="Self.FK_AgroInput_Type">
+      <End Role="AgroInputType" EntitySet="AgroInputType" />
+      <End Role="AgroInput" EntitySet="AgroInput" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CropCycle_Field" Association="Self.FK_CropCycle_Field">
+      <End Role="Field" EntitySet="Field" />
+      <End Role="CropCycle" EntitySet="CropCycle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CropCycle_Season" Association="Self.FK_CropCycle_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="CropCycle" EntitySet="CropCycle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CropCycle_Variety" Association="Self.FK_CropCycle_Variety">
+      <End Role="ProduceVariety" EntitySet="ProduceVariety" />
+      <End Role="CropCycle" EntitySet="CropCycle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Country" Association="Self.FK_Customer_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Farm_Country" Association="Self.FK_Farm_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Farm" EntitySet="Farm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Field_Farm" Association="Self.FK_Field_Farm">
+      <End Role="Farm" EntitySet="Farm" />
+      <End Role="Field" EntitySet="Field" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HarvestLot_CropCycle" Association="Self.FK_HarvestLot_CropCycle">
+      <End Role="CropCycle" EntitySet="CropCycle" />
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HarvestLot_Status" Association="Self.FK_HarvestLot_Status">
+      <End Role="LotStatus" EntitySet="LotStatus" />
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HarvestLot_UoM" Association="Self.FK_HarvestLot_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IM_FromBin" Association="Self.FK_IM_FromBin">
+      <End Role="StorageBin" EntitySet="StorageBin" />
+      <End Role="InventoryMovement" EntitySet="InventoryMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IM_Lot" Association="Self.FK_IM_Lot">
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+      <End Role="InventoryMovement" EntitySet="InventoryMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IM_ToBin" Association="Self.FK_IM_ToBin">
+      <End Role="StorageBin" EntitySet="StorageBin" />
+      <End Role="InventoryMovement" EntitySet="InventoryMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IM_Type" Association="Self.FK_IM_Type">
+      <End Role="InventoryMovementType" EntitySet="InventoryMovementType" />
+      <End Role="InventoryMovement" EntitySet="InventoryMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IM_UoM" Association="Self.FK_IM_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="InventoryMovement" EntitySet="InventoryMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IrrigationEvent_CropCycle" Association="Self.FK_IrrigationEvent_CropCycle">
+      <End Role="CropCycle" EntitySet="CropCycle" />
+      <End Role="IrrigationEvent" EntitySet="IrrigationEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IrrigationEvent_UoM" Association="Self.FK_IrrigationEvent_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="IrrigationEvent" EntitySet="IrrigationEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabResult_Sample" Association="Self.FK_LabResult_Sample">
+      <End Role="LabSample" EntitySet="LabSample" />
+      <End Role="LabResult" EntitySet="LabResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabResult_Status" Association="Self.FK_LabResult_Status">
+      <End Role="LabResultStatus" EntitySet="LabResultStatus" />
+      <End Role="LabResult" EntitySet="LabResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabResult_TestType" Association="Self.FK_LabResult_TestType">
+      <End Role="LabTestType" EntitySet="LabTestType" />
+      <End Role="LabResult" EntitySet="LabResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabResult_UoM" Association="Self.FK_LabResult_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="LabResult" EntitySet="LabResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LabSample_Lot" Association="Self.FK_LabSample_Lot">
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+      <End Role="LabSample" EntitySet="LabSample" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackingRun_Facility" Association="Self.FK_PackingRun_Facility">
+      <End Role="StorageFacility" EntitySet="StorageFacility" />
+      <End Role="PackingRun" EntitySet="PackingRun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pallet_Bin" Association="Self.FK_Pallet_Bin">
+      <End Role="StorageBin" EntitySet="StorageBin" />
+      <End Role="Pallet" EntitySet="Pallet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pallet_Facility" Association="Self.FK_Pallet_Facility">
+      <End Role="StorageFacility" EntitySet="StorageFacility" />
+      <End Role="Pallet" EntitySet="Pallet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PalletItem_PackedLot" Association="Self.FK_PalletItem_PackedLot">
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+      <End Role="PalletItem" EntitySet="PalletItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PalletItem_Pallet" Association="Self.FK_PalletItem_Pallet">
+      <End Role="Pallet" EntitySet="Pallet" />
+      <End Role="PalletItem" EntitySet="PalletItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PalletItem_UoM" Association="Self.FK_PalletItem_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="PalletItem" EntitySet="PalletItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PPL_Grade" Association="Self.FK_PPL_Grade">
+      <End Role="QualityGrade" EntitySet="QualityGrade" />
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PPL_Packaging" Association="Self.FK_PPL_Packaging">
+      <End Role="PackagingType" EntitySet="PackagingType" />
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PPL_Run" Association="Self.FK_PPL_Run">
+      <End Role="PackingRun" EntitySet="PackingRun" />
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PPL_SourceLot" Association="Self.FK_PPL_SourceLot">
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PPL_UoM" Association="Self.FK_PPL_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceVariety_ProduceType" Association="Self.FK_ProduceVariety_ProduceType">
+      <End Role="ProduceType" EntitySet="ProduceType" />
+      <End Role="ProduceVariety" EntitySet="ProduceVariety" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QI_ApprovedGrade" Association="Self.FK_QI_ApprovedGrade">
+      <End Role="QualityGrade" EntitySet="QualityGrade" />
+      <End Role="QualityInspection" EntitySet="QualityInspection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QI_Lot" Association="Self.FK_QI_Lot">
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+      <End Role="QualityInspection" EntitySet="QualityInspection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QI_ProposedGrade" Association="Self.FK_QI_ProposedGrade">
+      <End Role="QualityGrade" EntitySet="QualityGrade" />
+      <End Role="QualityInspection" EntitySet="QualityInspection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QI_Type" Association="Self.FK_QI_Type">
+      <End Role="InspectionType" EntitySet="InspectionType" />
+      <End Role="QualityInspection" EntitySet="QualityInspection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecallTarget_HarvestLot" Association="Self.FK_RecallTarget_HarvestLot">
+      <End Role="HarvestLot" EntitySet="HarvestLot" />
+      <End Role="RecallTarget" EntitySet="RecallTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecallTarget_PackedLot" Association="Self.FK_RecallTarget_PackedLot">
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+      <End Role="RecallTarget" EntitySet="RecallTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecallTarget_Pallet" Association="Self.FK_RecallTarget_Pallet">
+      <End Role="Pallet" EntitySet="Pallet" />
+      <End Role="RecallTarget" EntitySet="RecallTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecallTarget_Recall" Association="Self.FK_RecallTarget_Recall">
+      <End Role="Recall" EntitySet="Recall" />
+      <End Role="RecallTarget" EntitySet="RecallTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecallTarget_Shipment" Association="Self.FK_RecallTarget_Shipment">
+      <End Role="Shipment" EntitySet="Shipment" />
+      <End Role="RecallTarget" EntitySet="RecallTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_Customer" Association="Self.FK_SalesOrder_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="SalesOrder" EntitySet="SalesOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrder_Status" Association="Self.FK_SalesOrder_Status">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="SalesOrder" EntitySet="SalesOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipment_Carrier" Association="Self.FK_Shipment_Carrier">
+      <End Role="Carrier" EntitySet="Carrier" />
+      <End Role="Shipment" EntitySet="Shipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipment_FromFacility" Association="Self.FK_Shipment_FromFacility">
+      <End Role="StorageFacility" EntitySet="StorageFacility" />
+      <End Role="Shipment" EntitySet="Shipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipment_Order" Association="Self.FK_Shipment_Order">
+      <End Role="SalesOrder" EntitySet="SalesOrder" />
+      <End Role="Shipment" EntitySet="Shipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shipment_Status" Association="Self.FK_Shipment_Status">
+      <End Role="ShipmentStatus" EntitySet="ShipmentStatus" />
+      <End Role="Shipment" EntitySet="Shipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentItem_PackedLot" Association="Self.FK_ShipmentItem_PackedLot">
+      <End Role="PackedProductLot" EntitySet="PackedProductLot" />
+      <End Role="ShipmentItem" EntitySet="ShipmentItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentItem_Pallet" Association="Self.FK_ShipmentItem_Pallet">
+      <End Role="Pallet" EntitySet="Pallet" />
+      <End Role="ShipmentItem" EntitySet="ShipmentItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentItem_Shipment" Association="Self.FK_ShipmentItem_Shipment">
+      <End Role="Shipment" EntitySet="Shipment" />
+      <End Role="ShipmentItem" EntitySet="ShipmentItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentItem_UoM" Association="Self.FK_ShipmentItem_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="ShipmentItem" EntitySet="ShipmentItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOL_Grade" Association="Self.FK_SOL_Grade">
+      <End Role="QualityGrade" EntitySet="QualityGrade" />
+      <End Role="SalesOrderLine" EntitySet="SalesOrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOL_Order" Association="Self.FK_SOL_Order">
+      <End Role="SalesOrder" EntitySet="SalesOrder" />
+      <End Role="SalesOrderLine" EntitySet="SalesOrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOL_Packaging" Association="Self.FK_SOL_Packaging">
+      <End Role="PackagingType" EntitySet="PackagingType" />
+      <End Role="SalesOrderLine" EntitySet="SalesOrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOL_ProduceType" Association="Self.FK_SOL_ProduceType">
+      <End Role="ProduceType" EntitySet="ProduceType" />
+      <End Role="SalesOrderLine" EntitySet="SalesOrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOL_UoM" Association="Self.FK_SOL_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="SalesOrderLine" EntitySet="SalesOrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOL_Variety" Association="Self.FK_SOL_Variety">
+      <End Role="ProduceVariety" EntitySet="ProduceVariety" />
+      <End Role="SalesOrderLine" EntitySet="SalesOrderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageBin_UoM" Association="Self.FK_StorageBin_UoM">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasure" />
+      <End Role="StorageBin" EntitySet="StorageBin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageBin_Zone" Association="Self.FK_StorageBin_Zone">
+      <End Role="StorageZone" EntitySet="StorageZone" />
+      <End Role="StorageBin" EntitySet="StorageBin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageCondition_Zone" Association="Self.FK_StorageCondition_Zone">
+      <End Role="StorageZone" EntitySet="StorageZone" />
+      <End Role="StorageConditionLog" EntitySet="StorageConditionLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageFacility_Farm" Association="Self.FK_StorageFacility_Farm">
+      <End Role="Farm" EntitySet="Farm" />
+      <End Role="StorageFacility" EntitySet="StorageFacility" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageZone_Facility" Association="Self.FK_StorageZone_Facility">
+      <End Role="StorageFacility" EntitySet="StorageFacility" />
+      <End Role="StorageZone" EntitySet="StorageZone" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

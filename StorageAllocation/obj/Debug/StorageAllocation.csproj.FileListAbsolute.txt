@@ -94,3 +94,7 @@ D:\SourceCode\StorageAllocation\obj\Debug\StorageAllocation.csproj.CoreCompileIn
 D:\SourceCode\StorageAllocation\obj\Debug\StorageA.D8A064B2.Up2Date
 D:\SourceCode\StorageAllocation\obj\Debug\StorageAllocation.exe
 D:\SourceCode\StorageAllocation\obj\Debug\StorageAllocation.pdb
+D:\SourceCode\StorageAllocation\bin\Debug\EntityFramework.dll
+D:\SourceCode\StorageAllocation\bin\Debug\EntityFramework.SqlServer.dll
+D:\SourceCode\StorageAllocation\bin\Debug\EntityFramework.xml
+D:\SourceCode\StorageAllocation\bin\Debug\EntityFramework.SqlServer.xml
