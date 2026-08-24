@@ -1,0 +1,7 @@
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\bin\Debug\OptimizedAlgorithmsProject.exe.config
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\bin\Debug\OptimizedAlgorithmsProject.exe
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\bin\Debug\OptimizedAlgorithmsProject.pdb
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\obj\Debug\OptimizedAlgorithmsProject.csproj.AssemblyReference.cache
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\obj\Debug\OptimizedAlgorithmsProject.csproj.CoreCompileInputs.cache
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\obj\Debug\OptimizedAlgorithmsProject.exe
+C:\Users\Aleksandar\Downloads\OptimizedAlgorithmsProject\obj\Debug\OptimizedAlgorithmsProject.pdb
