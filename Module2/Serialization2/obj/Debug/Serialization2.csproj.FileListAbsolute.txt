@@ -1,0 +1,7 @@
+C:\Users\Aleksandar\Downloads\Serialization2\bin\Debug\Serialization2.exe.config
+C:\Users\Aleksandar\Downloads\Serialization2\bin\Debug\Serialization2.exe
+C:\Users\Aleksandar\Downloads\Serialization2\bin\Debug\Serialization2.pdb
+C:\Users\Aleksandar\Downloads\Serialization2\obj\Debug\Serialization2.csproj.AssemblyReference.cache
+C:\Users\Aleksandar\Downloads\Serialization2\obj\Debug\Serialization2.csproj.CoreCompileInputs.cache
+C:\Users\Aleksandar\Downloads\Serialization2\obj\Debug\Serialization2.exe
+C:\Users\Aleksandar\Downloads\Serialization2\obj\Debug\Serialization2.pdb

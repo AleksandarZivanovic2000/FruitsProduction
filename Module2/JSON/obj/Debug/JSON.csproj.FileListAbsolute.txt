@@ -1,0 +1,10 @@
+C:\Users\Aleksandar\Downloads\JSON\bin\Debug\JSON.exe.config
+C:\Users\Aleksandar\Downloads\JSON\bin\Debug\JSON.exe
+C:\Users\Aleksandar\Downloads\JSON\bin\Debug\JSON.pdb
+C:\Users\Aleksandar\Downloads\JSON\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Aleksandar\Downloads\JSON\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Aleksandar\Downloads\JSON\obj\Debug\JSON.csproj.AssemblyReference.cache
+C:\Users\Aleksandar\Downloads\JSON\obj\Debug\JSON.csproj.CoreCompileInputs.cache
+C:\Users\Aleksandar\Downloads\JSON\obj\Debug\JSON.csproj.Up2Date
+C:\Users\Aleksandar\Downloads\JSON\obj\Debug\JSON.exe
+C:\Users\Aleksandar\Downloads\JSON\obj\Debug\JSON.pdb
